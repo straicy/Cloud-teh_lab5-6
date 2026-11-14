@@ -1,0 +1,18 @@
+platform: azure
+environment: production
+
+azure:
+  resource_group: cloud-teh-lab6-rg
+  container_app: cloud-teh-api
+  region: westus2
+
+image: ghcr.io/straicy/cloud-teh_lab5-6:sha-ba6216e39cf8f81dee0bcdda25214dc7d9d7dd65
+
+port: 8000
+healthcheck_path: /common/healthcheck
+
+traffic:
+  - revision: cloud-teh-api--0000003
+    weight: 100
+  - revision: cloud-teh-api--canary-v2
+    weight: 0
